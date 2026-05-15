@@ -1,0 +1,15 @@
+# Security Secrets (CRITICAL)
+.env
+
+# Python Environment & Caches
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Local Test Reports (Optional, keeps your repo clean)
+security_report.html
+
+# Operating System Junk
+.DS_Store
+Thumbs.db
