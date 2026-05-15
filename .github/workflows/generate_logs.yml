@@ -1,0 +1,27 @@
+name: Generate Fresh Firewall Logs
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python env
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run log generator script
+        run: python log_gen.py
+
+      - name: Commit and push updated sample_logs.txt
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add sample_logs.txt
+          git commit -m "Automation: Overwrote sample_logs.txt with fresh data" || echo "No changes to commit"
+          git push
